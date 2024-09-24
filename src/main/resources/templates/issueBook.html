@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Issue Book</title>
+<link rel="stylesheet" href="issueBookPage.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Issue Book</h1>
+		<table id="booksTable">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Available</th>
+					<th>Issue</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book : ${books}">
+					<td th:text="${book.id}"></td>
+					<td th:text="${book.title}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.available ? 'Yes' : 'No'}"></td>
+					<td><input type="radio" name="issue" th:value="${book.id}"
+						th:disabled="${!book.available}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="button" onclick="issueBook()">Issue Selected Book</button>
+	</div>
+	<footer style="text-align: center">
+		<p>&copy; 2024 Kane Library Management System. All rights reserved.</p>
+	</footer>
+	<script src="issueBookPage.js"></script>
+</body>
+</html>
